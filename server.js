@@ -25,8 +25,7 @@ app.use(bodyParser.raw());
 
 // static folders
 const assetFolder = path.resolve(__dirname, './dist/');
-app.use(express.static(assetFolder));
-app.use("*", express.static(assetFolder));
+
 
 // config proxy
 const proxyConfig = proxy("/api",{target:"https://api.asian888.club"});
@@ -58,7 +57,8 @@ const proxyConfig = proxy("/api",{target:"https://api.asian888.club"});
 // });
 
 app.use( proxyConfig);
-
+app.use(express.static(assetFolder));
+app.use("*", express.static(assetFolder));
 // run server
 
 
