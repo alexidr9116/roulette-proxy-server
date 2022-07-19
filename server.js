@@ -42,7 +42,7 @@ const proxyMiddleware = createProxyMiddleware({
     //     "Content-Type": "text/xml;charset=UTF-8",
     //     "Accept": "*/*"
     // },
-    target: 'https://api.asian888.club',
+    target: 'https://api.asian888.club/',
     changeOrigin: true,
     
     pathRewrite: {
