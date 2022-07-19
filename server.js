@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
-const { createProxyMiddleware, fixRequestBody, responseInterceptor } = require('http-proxy-middleware');
+// const { createProxyMiddleware, fixRequestBody, responseInterceptor } = require('http-proxy-middleware');
+const proxy = require('http-proxy-middleware');
 
 require('dotenv').config();
 
@@ -28,6 +29,7 @@ app.use(express.static(assetFolder));
 app.use("*", express.static(assetFolder));
 
 // config proxy
+const proxyConfig = proxy("/api",{target:"https://api.asian888.club"});
 
 const proxyMiddleware = createProxyMiddleware({
     // target: 'https://api.asian888.club',
@@ -55,7 +57,7 @@ const proxyMiddleware = createProxyMiddleware({
     },
 });
 
-app.use('/api/*', proxyMiddleware);
+app.use( proxyConfig);
 
 // run server
 
