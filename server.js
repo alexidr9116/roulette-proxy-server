@@ -7,10 +7,13 @@ const { createProxyMiddleware, fixRequestBody, responseInterceptor } = require('
 require('dotenv').config();
 
 const app = express();
-
-app.use(cors({
-    origin: 'https://api.asian888.club'
-}));
+const corsOption ={
+    origin:function(origin, callback){
+        console.log(origin);
+        callback(null, true);
+    }
+}
+app.use(cors(corsOption));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
