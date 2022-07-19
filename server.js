@@ -9,7 +9,7 @@ require('dotenv').config();
 const app = express();
 const corsOption ={
     origin:function(origin, callback){
-        console.log(origin);
+        console.log(origin, callback);
         callback(null, true);
     }
 }
@@ -42,14 +42,14 @@ const proxyMiddleware = createProxyMiddleware({
     // pathRewrite: {
     //     [`^/api`]: '',
     // },
-    // headers: {
-    //     "Connection": "keep-alive",
-    //     "Content-Type": "text/xml;charset=UTF-8",
-    //     "Accept": "*/*"
-    // },
-    target: 'https://api.asian888.club/',
-    changeOrigin: true,
     
+    target: 'https://api.asian888.club',
+    changeOrigin: true,
+    headers: {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Accept": "*/*"
+    },
     pathRewrite: {
         "^/api": "",
     },
