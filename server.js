@@ -8,7 +8,9 @@ require('dotenv').config();
 
 const app = express();
 
-app.use(cors({origin: '*'}));
+app.use(cors({
+    origin: 'https://api.asian888.club'
+}));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
