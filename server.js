@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 // const { createProxyMiddleware, fixRequestBody, responseInterceptor } = require('http-proxy-middleware');
-const proxy = require('http-proxy-middleware');
+const proxy = require('express-http-proxy');
 
 require('dotenv').config();
 
@@ -31,31 +31,31 @@ app.use("*", express.static(assetFolder));
 // config proxy
 const proxyConfig = proxy("/api",{target:"https://api.asian888.club"});
 
-const proxyMiddleware = createProxyMiddleware({
-    // target: 'https://api.asian888.club',
-    // onProxyReq: fixRequestBody,
-    // logLevel: 'debug',
-    // changeOrigin: true,
-    // // secure: false,
-    // xfwd: true,
-    // ws: true,
-    // hostRewrite: true,
-    // cookieDomainRewrite: true,
-    // pathRewrite: {
-    //     [`^/api`]: '',
-    // },
+// const proxyMiddleware = createProxyMiddleware({
+//     // target: 'https://api.asian888.club',
+//     // onProxyReq: fixRequestBody,
+//     // logLevel: 'debug',
+//     // changeOrigin: true,
+//     // // secure: false,
+//     // xfwd: true,
+//     // ws: true,
+//     // hostRewrite: true,
+//     // cookieDomainRewrite: true,
+//     // pathRewrite: {
+//     //     [`^/api`]: '',
+//     // },
     
-    target: 'https://api.asian888.club',
-    changeOrigin: true,
-    headers: {
-        "Connection": "keep-alive",
-        "Content-Type": "application/json;charset=UTF-8",
-        "Accept": "*/*"
-    },
-    pathRewrite: {
-        "^/api": "",
-    },
-});
+//     target: 'https://api.asian888.club',
+//     changeOrigin: true,
+//     headers: {
+//         "Connection": "keep-alive",
+//         "Content-Type": "application/json;charset=UTF-8",
+//         "Accept": "*/*"
+//     },
+//     pathRewrite: {
+//         "^/api": "",
+//     },
+// });
 
 app.use( proxyConfig);
 
