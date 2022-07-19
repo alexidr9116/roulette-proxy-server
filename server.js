@@ -25,29 +25,29 @@ app.use("*", express.static(assetFolder));
 // config proxy
 
 const proxyMiddleware = createProxyMiddleware({
-    target: 'https://api.asian888.club',
-    onProxyReq: fixRequestBody,
-    logLevel: 'debug',
-    changeOrigin: true,
-    // secure: false,
-    xfwd: true,
-    ws: true,
-    hostRewrite: true,
-    cookieDomainRewrite: true,
-    pathRewrite: {
-        [`^/api`]: '',
-    },
-    headers: {
-        "Connection": "keep-alive",
-        "Content-Type": "text/xml;charset=UTF-8",
-        "Accept": "*/*"
-    },
     // target: 'https://api.asian888.club',
+    // onProxyReq: fixRequestBody,
+    // logLevel: 'debug',
     // changeOrigin: true,
-    
+    // // secure: false,
+    // xfwd: true,
+    // ws: true,
+    // hostRewrite: true,
+    // cookieDomainRewrite: true,
     // pathRewrite: {
-    //     "^/api": "",
+    //     [`^/api`]: '',
     // },
+    // headers: {
+    //     "Connection": "keep-alive",
+    //     "Content-Type": "text/xml;charset=UTF-8",
+    //     "Accept": "*/*"
+    // },
+    target: 'https://api.asian888.club',
+    changeOrigin: true,
+    
+    pathRewrite: {
+        "^/api": "",
+    },
 });
 
 app.use('/api/*', proxyMiddleware);
